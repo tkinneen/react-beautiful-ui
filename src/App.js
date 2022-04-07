@@ -1,9 +1,19 @@
 //import React from 'react';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
+import './App.css';
+import SearchIcon from './search.svg';
 
 //api key: 7249995d
 
 const API_URL = 'http://www.omdbapi.com?apikey=7249995d'
+
+const movie1 = {
+    Poster: "https://m.media-amazon.com/images/M/MV5BYmUzODQ5MGItZTZlNy00MDBhLWIxMmItMjg4Y2QyNDFlMWQ2XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+    Title: "The Royal Tenenbaums",
+    Type: "movie",
+    Year: "2001",
+    imdbID: "tt0265666"
+}
 
 const App = () => {
 
@@ -12,13 +22,42 @@ const App = () => {
         const data = await response.json();
         console.log(data);
     }
-    
+
     useEffect(() => {
         searchMovies("Tenenbaums");
     }, []);
-    
-    return(
-        <h1>App!</h1>
+
+    return (
+        <div className="app">
+            <h1>MovieLand</h1>
+
+            <div className="search">
+                <input
+                    placeholder="Search for movies"
+                    value="Superman"
+                    onChange={() => { }}
+                />
+                <img
+                    src={SearchIcon}
+                    alt="search"
+                    onClick={() => { }}
+                />
+            </div>
+            <div className="container">
+                <div className="movie">
+                    <div>
+                        <p>{movie1.Year}</p>
+                    </div>
+                    <div>
+                        <img src={movie1.Poster !== 'N/A' ? movie1.Poster : 'https://via.placeholder.com/400'} alt={movie1.Title} />
+                    </div>
+                    <div>
+                        <span>{movie1.Type}</span>
+                        <h3>{movie1.Title}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
